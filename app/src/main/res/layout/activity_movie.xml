@@ -93,6 +93,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txt_fixed"
         android:id="@+id/movie_rv_similar"
+        tools:listitem="@layout/movie_item_similar"
         android:layout_width="match_parent"
         android:layout_height="0dp"/>
 
