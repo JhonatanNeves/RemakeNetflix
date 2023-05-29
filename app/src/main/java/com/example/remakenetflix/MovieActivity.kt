@@ -39,6 +39,7 @@ class MovieActivity : AppCompatActivity() {
 
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_ios_24)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = null
 
         val layerDrawable: LayerDrawable = ContextCompat.getDrawable(this, R.drawable.shadows) as LayerDrawable
         val movieCover = ContextCompat.getDrawable(this, R.drawable.img_header)
