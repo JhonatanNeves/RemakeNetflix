@@ -15,17 +15,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val categories = mutableListOf<Category>()
-        for (j in 1 until 6) {
-            val movies = mutableListOf<Movie>()
-            for (i in 0 until 6) {
-                val movie = Movie(R.drawable.johnwick)
-                movies.add(movie)
-            }
-            val category = Category("cat $j", movies)
-            categories.add(category)
-        }
-
-
 
         val adapter = CategoryAdapter(categories)
         val rv: RecyclerView = findViewById(R.id.rv_main)

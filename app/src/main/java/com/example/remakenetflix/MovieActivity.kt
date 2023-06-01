@@ -26,10 +26,6 @@ class MovieActivity : AppCompatActivity() {
         txtCast.text = getString(R.string.cast, "Vin Diesel (Dominic 'Dom' Toretto), Michelle Rodrigues (Letty Ortiz), Tyrese Gibson (Roman Pearce), Ludacris (Tej Parker), John Cena (Jakob Toretto), Nathalie Emmanuel (Ramsey), Jordana Brewster(Mia Toretto), Sung Kang (Han Lue), Jason Momoa (Dante Reyes)")
 
         val movies = mutableListOf<Movie>()
-        for (i in 0 until 9) {
-            val movie = Movie(R.drawable.johnwick)
-            movies.add(movie)
-        }
 
         rv.layoutManager = GridLayoutManager(this, 3)
         rv.adapter = MovieAdapter(movies, R.layout.movie_item_similar)
