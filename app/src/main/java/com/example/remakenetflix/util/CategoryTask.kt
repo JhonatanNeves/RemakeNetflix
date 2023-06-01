@@ -1,7 +1,10 @@
 package com.example.remakenetflix.util
 
 
+import java.io.BufferedInputStream
+import java.io.ByteArrayOutputStream
 import java.io.IOException
+import java.io.InputStream
 import java.net.URL
 import java.util.concurrent.Executors
 import javax.net.ssl.HttpsURLConnection
@@ -24,12 +27,30 @@ class CategoryTask {
                 }
 
                 val stream = urlConnection.inputStream
-                val jsonAsString = stream.bufferedReader().use { it.readText() }
+                val buffer = BufferedInputStream(stream)
+                val jsonAsString = toString(buffer)
+
+                // val jsonAsString = stream.bufferedReader().use { it.readText() }
 
             } catch (e: IOException) {
 
             }
         }
+    }
+
+    private fun toString(stream: InputStream) : String {
+        val bytes = ByteArray(1024)
+        val baos = ByteArrayOutputStream()
+        var read: Int
+        while (true) {
+            read = stream.read(bytes)
+            if (read <= 0) {
+                break
+            }
+            baos.write(bytes, 0 , read)
+
+        }
+        return String(baos.toByteArray())
     }
 
 }
