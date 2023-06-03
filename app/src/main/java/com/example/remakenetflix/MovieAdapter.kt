@@ -11,7 +11,8 @@ import com.example.remakenetflix.model.Movie
 import com.example.remakenetflix.util.DownloadImageTask
 
 class MovieAdapter(private val movies: List<Movie>,
-                   @LayoutRes private val layoutId: Int
+                   @LayoutRes private val layoutId: Int,
+                   private val onItemClickListener: ((Int) -> UInt)? = null
                    ): RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
@@ -31,6 +32,10 @@ class MovieAdapter(private val movies: List<Movie>,
     inner class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(movie: Movie){
             val imageCover: ImageView = itemView.findViewById(R.id.img_cover)
+            imageCover.setOnClickListener {
+                onItemClickListener?.invoke(movie.id)
+            }
+
             DownloadImageTask(object : DownloadImageTask.Callback {
                 override fun onResult(bitmap: Bitmap) {
                     imageCover.setImageBitmap(bitmap)
