@@ -12,7 +12,7 @@ import com.example.remakenetflix.util.DownloadImageTask
 
 class MovieAdapter(private val movies: List<Movie>,
                    @LayoutRes private val layoutId: Int,
-                   private val onItemClickListener: ((Int) -> UInt)? = null
+                   private val onItemClickListener: (Int) -> Unit = null
                    ): RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
