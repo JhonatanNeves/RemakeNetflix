@@ -19,6 +19,7 @@ import javax.security.auth.callback.Callback
 class CategoryTask(private val callback: Callback) {
 
     private val handler = Handler(Looper.getMainLooper())
+    private val executor = Executors.newSingleThreadExecutor()
 
     interface Callback {
         fun onPreExecute()
@@ -28,7 +29,7 @@ class CategoryTask(private val callback: Callback) {
 
     fun execute(url: String) {
         callback.onPreExecute()
-        val executor = Executors.newSingleThreadExecutor()
+
 
         executor.execute {
             var urlConnection: HttpsURLConnection? = null

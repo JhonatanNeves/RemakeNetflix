@@ -7,6 +7,7 @@ import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 import com.example.remakenetflix.model.Movie
+import com.example.remakenetflix.util.DownloadImageTask
 
 class MovieAdapter(private val movies: List<Movie>,
                    @LayoutRes private val layoutId: Int
@@ -29,6 +30,10 @@ class MovieAdapter(private val movies: List<Movie>,
     inner class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(movie: Movie){
             val imageCover: ImageView = itemView.findViewById(R.id.img_cover)
+            DownloadImageTask(object : DownloadImageTask.Callback {
+
+            })
+
             //imageCover.setImageResource(movie.coverUrl)
         }
     }
