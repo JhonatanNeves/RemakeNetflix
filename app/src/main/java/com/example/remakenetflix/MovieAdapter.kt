@@ -1,5 +1,6 @@
 package com.example.remakenetflix
 
+import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,8 +32,10 @@ class MovieAdapter(private val movies: List<Movie>,
         fun bind(movie: Movie){
             val imageCover: ImageView = itemView.findViewById(R.id.img_cover)
             DownloadImageTask(object : DownloadImageTask.Callback {
-
-            })
+                override fun onResult(bitmap: Bitmap) {
+                    imageCover.setImageBitmap(bitmap)
+                }
+            }).execute(movie.coverUrl)
 
             //imageCover.setImageResource(movie.coverUrl)
         }
