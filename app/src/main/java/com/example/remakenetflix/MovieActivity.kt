@@ -3,16 +3,20 @@ package com.example.remakenetflix
 import android.graphics.drawable.LayerDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.remakenetflix.model.Movie
+import com.example.remakenetflix.model.MovieDetail
+import com.example.remakenetflix.util.MovieTask
 
-class MovieActivity : AppCompatActivity() {
+class MovieActivity : AppCompatActivity(), MovieTask.Callback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie)
@@ -21,6 +25,11 @@ class MovieActivity : AppCompatActivity() {
         val txtDesc: TextView = findViewById(R.id.movie_txt_desc)
         val txtCast: TextView = findViewById(R.id.movie_txt_cast)
         val rv : RecyclerView = findViewById(R.id.movie_rv_similar)
+
+        val id = intent?.getIntExtra("id", 0) ?: throw IllegalStateException("ID not found!")
+        val url = "https://api.tiagoaguiar.co/netflixapp/movie/$id?apiKey=19a4b35f-adde-49ee-bb71-d03dde25fd75"
+
+        MovieTask(this).execute(url)
 
         txtTitle.text = "Velozes & Furiosos 10 (2023)"
         txtDesc.text = "Over many missions and against impossible odds, Dom Toretto and his family have outsmarted, out-nerved and outdriven every foe in their path. Now, they confront the most lethal opponent they've ever faced: A terrifying threat emerging from the shadows of the past who's fueled by blood revenge, and who is determined to shatter this family and destroy everything—and everyone—that Dom loves, forever."
@@ -42,6 +51,19 @@ class MovieActivity : AppCompatActivity() {
         val movieCover = ContextCompat.getDrawable(this, R.drawable.img_header)
         layerDrawable.setDrawableByLayerId(R.id.cover_drawable, movieCover)
         val coverImg: ImageView = findViewById(R.id.movie_img_header)
+        coverImg.setImageDrawable(layerDrawable)
+    }
+
+    override fun onPreExecute() {
+
+    }
+
+    override fun onFailure(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
+    override fun onResult(movieDetail: MovieDetail) {
+        Log.i("Teste", movieDetail.toString())
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
