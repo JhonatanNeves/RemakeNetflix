@@ -1,5 +1,7 @@
 package com.example.remakenetflix
 
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.LayerDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,6 +18,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.remakenetflix.model.Movie
 import com.example.remakenetflix.model.MovieDetail
+import com.example.remakenetflix.util.DownloadImageTask
 import com.example.remakenetflix.util.MovieTask
 
 class MovieActivity : AppCompatActivity(), MovieTask.Callback {
@@ -54,11 +57,6 @@ class MovieActivity : AppCompatActivity(), MovieTask.Callback {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = null
 
-        val layerDrawable: LayerDrawable = ContextCompat.getDrawable(this, R.drawable.shadows) as LayerDrawable
-        val movieCover = ContextCompat.getDrawable(this, R.drawable.img_header)
-        layerDrawable.setDrawableByLayerId(R.id.cover_drawable, movieCover)
-        val coverImg: ImageView = findViewById(R.id.movie_img_header)
-        coverImg.setImageDrawable(layerDrawable)
     }
 
     override fun onPreExecute() {
@@ -80,6 +78,16 @@ class MovieActivity : AppCompatActivity(), MovieTask.Callback {
         movies.clear()
         movies.addAll(movieDetail.similars)
         adapter.notifyDataSetChanged()
+
+        DownloadImageTask(object : DownloadImageTask.Callback{
+            override fun onResult(bitmap: Bitmap) {
+                val layerDrawable: LayerDrawable = ContextCompat.getDrawable(this@MovieActivity, R.drawable.shadows) as LayerDrawable
+                val movieCover = BitmapDrawable(resources, bitmap)
+                layerDrawable.setDrawableByLayerId(R.id.cover_drawable, movieCover)
+                val coverImg: ImageView = findViewById(R.id.movie_img_header)
+                coverImg.setImageDrawable(layerDrawable)
+            }
+        }).execute(movieDetail.movie.coverUrl)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
