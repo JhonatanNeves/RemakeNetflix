@@ -2,4 +2,14 @@
     <string name="app_name">RemakeNetflix</string>
     <string name="cast">Cast: %1$s</string>
     <string name="similar">Similar options</string>
+    <string name="menu_home">Home</string>
+    <string name="mylist">My List</string>
+    <string name="menu_thrillers">Thrillers</string>
+    <string name="menu_crime">Crime</string>
+    <string name="menu_kids"><![CDATA[Kids & Family]]></string>
+    <string name="menu_reality">Reality TV</string>
+    <string name="menu_action">Action</string>
+    <string name="menu_anime">Anime</string>
+    <string name="social">Social</string>
+    <string name="menu_about">About</string>
 </resources>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    >
+
+    <group android:checkableBehavior="single">
+
+    <item
+        android:id="@+id/nav_home"
+        android:title="@string/menu_home"
+        />
+
+    <item
+        android:id="@+id/nav_list"
+        android:title="@string/mylist"
+        />
+
+    <item
+        android:id="@+id/nav_thrillers"
+        android:title="@string/menu_thrillers"
+        />
+
+    <item
+        android:id="@+id/nav_crime"
+        android:title="@string/menu_crime"
+        />
+
+    <item
+        android:id="@+id/nav_kids"
+        android:title="@string/menu_kids"
+        />
+
+    <item
+        android:id="@+id/nav_reality"
+        android:title="@string/menu_reality"
+        />
+
+    <item
+        android:id="@+id/nav_action"
+        android:title="@string/menu_action"
+        />
+
+    <item
+        android:id="@+id/nav_anime"
+        android:title="@string/menu_anime"
+        />
+    </group>
+
+    <item android:title="@string/social">
+        <menu>
+            <item
+                android:id="@+id/nav_about"
+                android:title="@string/menu_about"/>
+        </menu>
+    </item>
+
+</menu>
